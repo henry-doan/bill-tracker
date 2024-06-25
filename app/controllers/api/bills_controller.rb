@@ -2,7 +2,7 @@ class Api::BillsController < ApplicationController
   before_action :set_bill, only: [:show, :update, :destroy]
 
   def index
-    render json: Bill.all
+    render json: current_user.bills
   end  
   
   def show
@@ -10,7 +10,7 @@ class Api::BillsController < ApplicationController
   end
   
   def create
-    @bill = Bill.new(bill_params)
+    @bill = current_user.bills.new(bill_params)
     if @bill.save
       render json: @bill
     else
@@ -33,7 +33,7 @@ class Api::BillsController < ApplicationController
   
   private
     def set_bill
-      @bill = Bill.find(params[:id])
+      @bill = current_user.bills.find(params[:id])
     end
 
     def bill_params

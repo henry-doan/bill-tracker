@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Track bills and have stats on total and separate bills
 
-Things you may want to cover:
 
-* Ruby version
+Users has email and password,
+User has many bills
+  Bill has, name, 
+  Bill has payments
+  Payment has the  amount, paid, whenpaid, due date, status (completed, over due, pending, )
 
-* System dependencies
+  Payments has notes
 
-* Configuration
+  notes has title, body
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+TODO 
+ - Bill tracker and show graphes of each bill and all billes for the months
+ - grand total for each month / year,
+ - later have file upload for files and photos.

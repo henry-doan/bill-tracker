@@ -1,6 +1,7 @@
 import Home from './components/dashboard/Home';
 import NoMatch from './components/shared/NoMatch';
 import Navbar from './components/shared/Navbar';
+import MainFooter from './components/shared/MainFooter';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import FetchUser from './components/auth/FetchUser';
@@ -21,6 +22,7 @@ const App = () => (
         </Routes>
       </FetchUser>
     </>
+    <MainFooter />
   </>
 )
 

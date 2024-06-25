@@ -1,5 +1,11 @@
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { Link } from 'react-router-dom';
+import {
+  Button,
+  Container,
+  Menu,
+  Segment,
+} from 'semantic-ui-react';
 
 const Navbar = ({user, handleLogout }) => {
   
@@ -7,24 +13,48 @@ const Navbar = ({user, handleLogout }) => {
     if (user) {
       return (
         <>
-          <li onClick={ () => handleLogout() }>
-            Logout
-          </li>
+          <Menu.Item as='a' active>
+            <Link to='/dash'>
+              Dashboard
+            </Link>
+          </Menu.Item>
+          <Menu.Item position='right'>
+            <Button as='a' inverted primary style={{ marginLeft: '0.5em' }} onClick={ () => handleLogout() }>
+              Logout
+            </Button>
+          </Menu.Item>
         </>
       )
     } else {
       return (
         <>
-          <Link to='/login'>
-            <li>
-              Login
-            </li>
-          </Link>
-          <Link to='/register'>
-            <li>
-              Register
-            </li>
-          </Link>
+          <Menu.Item as='a' active>
+            <Link to='/'>
+              Home
+            </Link>
+          </Menu.Item>
+          <Menu.Item as='a'>
+            <Link to='/about'>
+              About
+            </Link>
+          </Menu.Item>
+          <Menu.Item as='a'>
+            <Link to='/contact'>
+              Contact
+            </Link>
+          </Menu.Item>
+          <Menu.Item position='right'>
+            <Link to='/login'>
+              <Button as='a' inverted>
+                Log in
+              </Button>
+            </Link>
+            <Link to='/register'>
+              <Button as='a' inverted primary style={{ marginLeft: '0.5em' }}>
+                Sign Up
+              </Button>
+            </Link>
+          </Menu.Item>
         </>
       )
     }
@@ -32,16 +62,22 @@ const Navbar = ({user, handleLogout }) => {
   
   return (
     <>
-      <nav>
-        <ul>
-          <Link to='/'>
-            <li>
-              Home
-            </li>
-          </Link>
+      <Segment
+        inverted
+        textAlign='center'
+        style={{ minHeight: 50, padding: '1em 0em' }}
+        vertical
+      >
+        <Menu
+          fixed={'top'}
+          inverted
+          size='large'
+        >
+          <Container>
             { rightNavItems() }
-        </ul>
-      </nav>
+          </Container>
+        </Menu>
+      </Segment>
     </>
   )
 }

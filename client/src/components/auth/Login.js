@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { AuthConsumer } from "../../providers/AuthProvider";
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+
+import { AuthConsumer } from "../../providers/AuthProvider";
 
 const Login = ({ handleLogin }) => {
   const [user, setUser] = useState({ email: '', password: '' })
@@ -13,29 +14,6 @@ const Login = ({ handleLogin }) => {
   
   return (
     <>
-      {/* <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input
-          type="email"
-          autoFocus
-          required         
-          name='email'
-          value={user.email}
-          placeholder='Email'
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-        />
-        <label>Password</label>
-        <input
-          required
-          name='password'
-          value={user.password}
-          placeholder='Password'
-          type='password'
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-        />
-        <button type='submit'>Submit</button>
-      </form> */}
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' textAlign='center'>

@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 import { AuthConsumer } from "../../providers/AuthProvider";
 
 const FetchUser = ({ authenticated, setUser, children }) => {

@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
+
 import { AuthConsumer } from "../../providers/AuthProvider";
 
 const ProtectedRoute = ({ user }) => {

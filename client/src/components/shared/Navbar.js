@@ -1,4 +1,3 @@
-import { AuthConsumer } from "../../providers/AuthProvider";
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -6,6 +5,8 @@ import {
   Menu,
   Segment,
 } from 'semantic-ui-react';
+
+import { AuthConsumer } from "../../providers/AuthProvider";
 
 const Navbar = ({user, handleLogout }) => {
   

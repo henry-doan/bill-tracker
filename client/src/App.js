@@ -1,13 +1,14 @@
-import Home from './components/dashboard/Home';
-import NoMatch from './components/shared/NoMatch';
-import Navbar from './components/shared/Navbar';
-import MainFooter from './components/shared/MainFooter';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import FetchUser from './components/auth/FetchUser';
-import ProtectedRoute from './components/auth/ProtectedRoute';
+import { Route, Routes } from 'react-router-dom';
 
-import { Routes, Route } from 'react-router-dom';
+import FetchUser from './components/auth/FetchUser';
+import Login from './components/auth/Login';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import Register from './components/auth/Register';
+import Dash from './components/dashboard/Dash';
+import Home from './components/dashboard/Home';
+import MainFooter from './components/shared/MainFooter';
+import Navbar from './components/shared/Navbar';
+import NoMatch from './components/shared/NoMatch';
 
 const App = () => (
   <>
@@ -16,6 +17,9 @@ const App = () => (
       <FetchUser>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path='/' element={<ProtectedRoute />}>
+            <Route path='/dash' element={<Dash />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/*" element={<NoMatch />} />

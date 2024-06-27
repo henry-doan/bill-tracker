@@ -5,11 +5,11 @@ Track bills and have stats on total and separate bills
 
 Users has email and password,
 User has many bills
-  Bill has, name, 
+  Bill has category, 
   Bill has payments
-  Payment has the  amount, paid, whenpaid, due date, status (completed, over due, pending, )
+  Payment has the amount:float, whenpaid:datetime, due date:datetime, status (completed, over due, pending, )
 
-  Payments has notes
+  Payments has notes, belongs to bill
 
   notes has title, body
 

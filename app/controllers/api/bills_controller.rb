@@ -37,6 +37,6 @@ class Api::BillsController < ApplicationController
     end
 
     def bill_params
-      params.require(:bill).permit(:name, :category)
+      params.require(:bill).permit(:category)
     end
 end

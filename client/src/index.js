@@ -1,13 +1,14 @@
+import { initMiddleware } from 'devise-axios';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
+
 import App from './App';
 import './index.css';
 import AuthProvider from "./providers/AuthProvider";
 import BillProvider from "./providers/BillProvider";
-
-import { initMiddleware } from 'devise-axios';
-import 'semantic-ui-css/semantic.min.css';
+import PaymentProvider from "./providers/PaymentProvider";
 
 initMiddleware();
 
@@ -17,7 +18,9 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <BillProvider>
-          <App />
+          <PaymentProvider>
+            <App />
+          </PaymentProvider>
         </BillProvider>
       </AuthProvider>
     </BrowserRouter>

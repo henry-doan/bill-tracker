@@ -4,8 +4,9 @@ import {
   Grid,
   GridColumn,
   GridRow,
+  Header,
   Icon,
-  ListContent, ListDescription, ListHeader, ListItem,
+  ListContent, ListDescription, ListItem,
   Modal,
   ModalActions,
   ModalContent,
@@ -16,18 +17,17 @@ import {
 import { BillConsumer } from "../../providers/BillProvider";
 import BillForm from "./BillForm";
 
-const BillShow = ({ id, name, category, updateBill, deleteBill }) => {
+const BillShow = ({ id, category, updateBill, deleteBill }) => {
   const [open, setUpdateModalOpen] = useState(false)
 
   return (
     <ListItem>
       <ListContent>
-        <ListHeader>{name}</ListHeader>
         <ListDescription>
           <Grid columns={3}>
             <GridRow>
               <GridColumn>
-                Category: {category}
+                <Header>{category}</Header>
               </GridColumn>
               <GridColumn>
               </GridColumn>
@@ -50,7 +50,6 @@ const BillShow = ({ id, name, category, updateBill, deleteBill }) => {
                     <ModalDescription>
                       <BillForm 
                         id={id}
-                        name={name}
                         category={category}
                         updateBill={updateBill}
                         setUpdateModalOpen={setUpdateModalOpen}

@@ -1,4 +1,6 @@
 class Bill < ApplicationRecord
   belongs_to :user
-  validates :name, :category, presence: true
+  has_many :payments, dependent: :destroy
+
+  validates :category, presence: true
 end

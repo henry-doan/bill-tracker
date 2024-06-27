@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Form, FormButton, FormGroup, FormInput, Select } from 'semantic-ui-react';
+import { Form, FormButton, FormGroup, Select } from 'semantic-ui-react';
 
 import { BillConsumer } from '../../providers/BillProvider';
 import { categoryOptions } from './categories';
 
-const BillForm = ({ setAdd, addBill, updateBill, id, name, category, setUpdateModalOpen }) => {
-  const [bill, setBill] = useState({ name: '', category: '' })
+const BillForm = ({ setAdd, addBill, updateBill, id, category, setUpdateModalOpen }) => {
+  const [bill, setBill] = useState({ category: '' })
 
   useEffect( () => {
     if (id) {
-      setBill({ name, category })
+      setBill({ category })
     }
   }, [])
 
@@ -22,23 +22,13 @@ const BillForm = ({ setAdd, addBill, updateBill, id, name, category, setUpdateMo
       addBill(bill)
       setAdd(false)
     }
-    setBill({ name: '', category: '' })
+    setBill({ category: '' })
   }
 
   return(
     <>
-      { id ? <h1>Update Bill Details</h1> : null}
       <Form onSubmit={handleSubmit}>
         <FormGroup widths='equal'>
-          <FormInput 
-            fluid 
-            label='Bill Name' 
-            placeholder='Name' 
-            name='name'
-            value={bill.name}
-            onChange={(e) => setBill({ ...bill, name: e.target.value })}
-            required
-          />
           <Select
             fluid
             label='Category'

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Grid,
@@ -62,9 +63,17 @@ const BillShow = ({ id, category, updateBill, deleteBill }) => {
                     </Button>
                   </ModalActions>
                 </Modal>
-                <Button icon color='green'>
-                  <Icon name='eye'  />
-                </Button>
+                <Link
+                  to={`/${id}/payments`}
+                  state={{
+                    id,
+                    category,
+                  }}
+                >
+                  <Button icon color='green'>
+                    <Icon name='eye' />
+                  </Button>
+                </Link>
               </GridColumn>
             </GridRow>
           </Grid>

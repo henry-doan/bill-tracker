@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, FormButton, FormGroup, Select } from 'semantic-ui-react';
+import { Form, FormButton, FormGroup, Segment, Select } from 'semantic-ui-react';
 
 import { BillConsumer } from '../../providers/BillProvider';
 import { categoryOptions } from './categories';
@@ -39,7 +39,9 @@ const BillForm = ({ setAdd, addBill, updateBill, id, category, setUpdateModalOpe
             required
           />
         </FormGroup>
-        <FormButton>Submit</FormButton>
+        <Segment basic textAlign='center'>
+          <FormButton basic>Submit</FormButton>
+        </Segment>
       </Form>
     </>
   )

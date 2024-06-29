@@ -9,6 +9,7 @@ import Home from './components/dashboard/Home';
 import MainFooter from './components/shared/MainFooter';
 import Navbar from './components/shared/Navbar';
 import NoMatch from './components/shared/NoMatch';
+import Payments from './components/payments/Payments';
 
 const App = () => (
   <>
@@ -19,6 +20,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path='/' element={<ProtectedRoute />}>
             <Route path='/dash' element={<Dash />} />
+            <Route path='/:id/payments' element={<Payments />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

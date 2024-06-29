@@ -8,6 +8,7 @@ import App from './App';
 import './index.css';
 import AuthProvider from "./providers/AuthProvider";
 import BillProvider from "./providers/BillProvider";
+import NoteProvider from "./providers/NoteProvider";
 import PaymentProvider from "./providers/PaymentProvider";
 
 initMiddleware();
@@ -19,7 +20,9 @@ root.render(
       <AuthProvider>
         <BillProvider>
           <PaymentProvider>
-            <App />
+            <NoteProvider>
+              <App />
+            </NoteProvider>
           </PaymentProvider>
         </BillProvider>
       </AuthProvider>

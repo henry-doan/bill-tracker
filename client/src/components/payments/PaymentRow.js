@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Moment from 'react-moment';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Button,
   Icon,
@@ -73,9 +73,13 @@ const PaymentRow = ({ id, amount, whenpaid, duedate, status, updatePayment, dele
             </Button>
           </ModalActions>
         </Modal>
-        <Button icon color='green'>
-          <Icon name='file alternate outline' />
-        </Button>
+        <Link
+          to={`/${id}/notes`}
+        >
+          <Button icon color='green'>
+            <Icon name='file alternate outline' />
+          </Button>
+        </Link>
       </TableCell>
     </TableRow>
   )

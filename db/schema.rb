@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_27_014907) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_29_194132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_27_014907) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_bills_on_user_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "subject"
+    t.text "body"
+    t.bigint "payment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_notes_on_payment_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -64,5 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_27_014907) do
   end
 
   add_foreign_key "bills", "users"
+  add_foreign_key "notes", "payments"
   add_foreign_key "payments", "bills"
 end

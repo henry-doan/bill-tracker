@@ -1,5 +1,5 @@
 class Note < ApplicationRecord
   belongs_to :payment
 
-  validates :subject, :duedate, presence: true
+  validates :subject, :body, presence: true
 end

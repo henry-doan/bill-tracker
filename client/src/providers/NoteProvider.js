@@ -45,7 +45,7 @@ const NoteProvider = ({ children }) => {
       })
   }
 
-  const deleteNote = (id, paymentId) => {
+  const deleteNote = (paymentId, id) => {
     axios.delete(`/api/payments/${paymentId}/notes/${id}`)
       .then( res => setNotes( notes.filter(p => p.id !== id)))
       .catch( err => {

@@ -37,7 +37,7 @@ class Api::NotesController < ApplicationController
       @payment = Payment.find(params[:payment_id])
     end
 
-    def set_notes
+    def set_note
       @note = @payment.notes.find(params[:id])
     end
 

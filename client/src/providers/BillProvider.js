@@ -7,6 +7,7 @@ export const BillConsumer = BillContext.Consumer;
 
 const BillProvider = ({ children }) => {
   const [bills, setBills] = useState([])
+  const [billCount, setBillCount] = useState()
   const [msgs, setMsgs] = useState()
   const navigate = useNavigate()
 
@@ -54,6 +55,15 @@ const BillProvider = ({ children }) => {
       })
   }
 
+  const getBillCount = () => {
+    axios.get('/api/bill_count')
+      .then( res => setBillCount(res.data))
+      .catch( err => {
+        console.log(err)
+        setMsgs({ msg: err.response.data.errors })
+      })
+  }
+
   return (
     <BillContext.Provider value={{
       bills, 
@@ -63,6 +73,8 @@ const BillProvider = ({ children }) => {
       addBill,
       updateBill,
       deleteBill,
+      getBillCount,
+      billCount,
     }}>
       { children }
     </BillContext.Provider>

@@ -31,6 +31,33 @@ class Api::PaymentsController < ApplicationController
     @payment.destroy
     render json: { message: 'payment deleted' }
   end  
+
+  def payment_count
+    @pending_count = 0
+    @completed_count = 0
+    @overdue_count = 0
+    @total_paid = 0.0
+
+    @bill.payments.each do |pay|
+      case pay.status
+      when 'Pending'
+        @pending_count += 1  
+      when 'Completed'
+        @completed_count += 1 
+      when 'Overdue'
+        @overdue_count += 1 
+      end
+
+      @total_paid += pay.amount
+    end
+    
+    render json: { 
+      pending_count: @pending_count,  
+      completed_count: @completed_count,  
+      overdue_count: @overdue_count,  
+      total_paid: sprintf("%.2f", @total_paid),  
+    }
+  end
   
   private
     def set_bill

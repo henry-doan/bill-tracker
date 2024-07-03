@@ -5,8 +5,9 @@ import { useLocation, useParams } from 'react-router-dom';
 import { PaymentConsumer } from "../../providers/PaymentProvider";
 import PaymentForm from './PaymentForm';
 import PaymentTable from "./PaymentTable";
+import PaymentStats from "./PaymentStats";
 
-const Payments = ({ payments, getAllPayments, msgs, setMsgs  }) => {
+const Payments = ({ payments, getAllPayments, msgs, setMsgs, paymentCount, getPaymentCount  }) => {
   const [adding, setAdd] = useState(false)
   const [bill, setBill] = useState({ category: '' })
 
@@ -15,15 +16,17 @@ const Payments = ({ payments, getAllPayments, msgs, setMsgs  }) => {
 
   useEffect( () => {
     getAllPayments(id)
+    getPaymentCount(id)
 
     if (id) {
       const { category } = location.state
       setBill({ category })
     }
   }, [])
-
+  
   return (
    <Container>
+      <PaymentStats {...paymentCount} itemLength={payments.length} itemTitle="Total Payments" />
       <Modal
         onClose={() => setAdd(false)}
         onOpen={() => setAdd(true)}

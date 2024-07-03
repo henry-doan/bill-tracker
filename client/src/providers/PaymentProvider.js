@@ -7,6 +7,7 @@ export const PaymentConsumer = PaymentContext.Consumer;
 
 const PaymentProvider = ({ children }) => {
   const [payments, setPayments] = useState([])
+  const [paymentCount, setPaymentCount] = useState({ completed_count: 0, overdue_count: 0, pending_count: 0, total_paid: 0.0 })
   const [msgs, setMsgs] = useState()
   const navigate = useNavigate()
 
@@ -54,6 +55,15 @@ const PaymentProvider = ({ children }) => {
       })
   }
 
+  const getPaymentCount = (id) => {
+    axios.get(`/api/bills/${id}/payment_count`)
+      .then( res => setPaymentCount(res.data))
+      .catch( err => {
+        console.log(err)
+        setMsgs({ msg: err.response.data.errors })
+      })
+  }
+
   return (
     <PaymentContext.Provider value={{
       payments, 
@@ -63,6 +73,8 @@ const PaymentProvider = ({ children }) => {
       addPayment,
       updatePayment,
       deletePayment,
+      paymentCount,
+      getPaymentCount,
     }}>
       { children }
     </PaymentContext.Provider>

@@ -7,7 +7,7 @@ export const BillConsumer = BillContext.Consumer;
 
 const BillProvider = ({ children }) => {
   const [bills, setBills] = useState([])
-  const [billCount, setBillCount] = useState()
+  const [billCount, setBillCount] = useState({ completed_count: 0, overdue_count: 0, pending_count: 0, total_paid: 0.0 })
   const [msgs, setMsgs] = useState()
   const navigate = useNavigate()
 

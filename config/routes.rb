@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get '/bill_count', to: 'bills#bill_count'
   
     resources :bills do 
+      get '/payment_count', to: 'payments#payment_count'
       resources :payments
     end
 

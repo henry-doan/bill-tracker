@@ -18,6 +18,7 @@ const PaymentTable = ({ payments }) => (
       { payments.map( p => 
         <PaymentRow 
           {...p}
+          key={p.id}
         />
       )}  
     </TableBody>

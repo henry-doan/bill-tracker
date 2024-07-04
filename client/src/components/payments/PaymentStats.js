@@ -11,7 +11,6 @@ const PaymentStats = ({ getPaymentCount, paymentCount, payments }) => {
     getPaymentCount(id)
   }, [payments])
 
-  // const { completed_count, overdue_count, pending_count, total_paid } = billCount
   return (
     <CountStats {...paymentCount } itemLength={payments.length} itemTitle="Total Payments" />
   )

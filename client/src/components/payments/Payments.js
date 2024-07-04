@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { useLocation, useParams } from 'react-router-dom';
 import { Button, Container, Header, Modal, ModalActions, ModalContent, ModalDescription, ModalHeader } from "semantic-ui-react";
 
-import { useLocation, useParams } from 'react-router-dom';
 import { PaymentConsumer } from "../../providers/PaymentProvider";
+import PaymentCharts from "./PaymentCharts";
 import PaymentForm from './PaymentForm';
-import PaymentTable from "./PaymentTable";
 import PaymentStats from "./PaymentStats";
+import PaymentTable from "./PaymentTable";
 
 const Payments = ({ payments, getAllPayments, msgs, setMsgs, paymentCount, getPaymentCount  }) => {
   const [adding, setAdd] = useState(false)
@@ -26,6 +27,7 @@ const Payments = ({ payments, getAllPayments, msgs, setMsgs, paymentCount, getPa
   
   return (
    <Container>
+      <PaymentCharts />
       <PaymentStats {...paymentCount} itemLength={payments.length} itemTitle="Total Payments" />
       <Modal
         onClose={() => setAdd(false)}

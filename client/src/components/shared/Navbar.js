@@ -66,7 +66,7 @@ const Navbar = ({user, handleLogout }) => {
       <Segment
         inverted
         textAlign='center'
-        style={{ minHeight: 50, padding: '1em 0em' }}
+        style={{ minHeight: 50, padding: '1em 0em', margin: '0 0 4em 0' }}
         vertical
       >
         <Menu

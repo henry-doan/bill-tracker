@@ -36,7 +36,6 @@ const PaymentCharts = ({ getPaymentCount, paymentCount, payments }) => {
           <GridColumn>
             <Header textAlign='center'>Amount Spend Per Month</Header>
             <LineChart
-            title="Chart of PU x UV"
               width={500}
               height={300}
               data={data}

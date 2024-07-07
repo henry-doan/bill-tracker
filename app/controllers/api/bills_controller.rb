@@ -65,6 +65,23 @@ class Api::BillsController < ApplicationController
     }
   end
   
+  def payment_by_year
+    @payments_per_year = []
+    
+    current_user.bills.each do |b|
+      b.payments.where('extract(year from whenpaid) = ?', params[:year]).each do |pay|
+        if @payments_per_year.any? {|pay_hash| pay_hash[:whenpaid] == pay[:whenpaid]}
+          found_hash = @payments_per_year.find {|pay_hash| pay_hash[:whenpaid] == pay[:whenpaid]}
+          found_hash[:amount] = found_hash[:amount].to_f + pay.amount
+        else
+          @payments_per_year << { whenpaid: pay.whenpaid, amount: sprintf("%.2f", pay.amount) }
+        end
+      end
+    end
+
+    render json: { payments_per_year: @payments_per_year }
+  end
+
   private
     def set_bill
       @bill = current_user.bills.find(params[:id])

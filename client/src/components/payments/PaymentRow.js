@@ -52,7 +52,7 @@ const PaymentRow = ({ id, amount, whenpaid, duedate, status, updatePayment, dele
             </Button>
           }
         >
-          <ModalHeader>Update Bill Details</ModalHeader>
+          <ModalHeader>Update Payment Details</ModalHeader>
           <ModalContent image>
             <ModalDescription>
               <PaymentForm 

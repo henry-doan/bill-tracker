@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/bill_count', to: 'bills#bill_count'
+    post '/payment_by_year', to: 'bills#payment_by_year'
   
     resources :bills do 
       get '/payment_count', to: 'payments#payment_count'

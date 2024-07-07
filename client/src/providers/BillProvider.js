@@ -8,6 +8,7 @@ export const BillConsumer = BillContext.Consumer;
 const BillProvider = ({ children }) => {
   const [bills, setBills] = useState([])
   const [billCount, setBillCount] = useState({ completed_count: 0, overdue_count: 0, pending_count: 0, total_paid: 0.0 })
+  const [paymentByYear, setPaymentByYear] = useState([])
   const [msgs, setMsgs] = useState()
   const navigate = useNavigate()
 
@@ -64,6 +65,15 @@ const BillProvider = ({ children }) => {
       })
   }
 
+  const getPaymentByYear = (year) => {
+    axios.post('/api/payment_by_year', { year })
+      .then( res => setPaymentByYear(res.data.payments_per_year))
+      .catch( err => {
+        console.log(err)
+        setMsgs({ msg: err.response.data.errors })
+      })
+  }
+
   return (
     <BillContext.Provider value={{
       bills, 
@@ -75,6 +85,8 @@ const BillProvider = ({ children }) => {
       deleteBill,
       getBillCount,
       billCount,
+      paymentByYear,
+      getPaymentByYear,
     }}>
       { children }
     </BillContext.Provider>

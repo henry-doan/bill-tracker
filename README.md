@@ -15,6 +15,6 @@ User has many bills
 
 
 TODO 
- - Bill tracker and show graphes of each bill and all billes for the months
- - grand total for each month / year,
  - later have file upload for files and photos.
+ 
+

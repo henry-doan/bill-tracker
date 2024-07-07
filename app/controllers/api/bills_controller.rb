@@ -36,8 +36,10 @@ class Api::BillsController < ApplicationController
     @completed_count = 0
     @overdue_count = 0
     @total_paid = 0.0
+    @grand_bill_total = []
 
     current_user.bills.each do |b|
+      payment_total_for_bill = 0.0
       b.payments.each do |pay|
         case pay.status
         when 'Pending'
@@ -49,7 +51,9 @@ class Api::BillsController < ApplicationController
         end
 
         @total_paid += pay.amount
+        payment_total_for_bill += pay.amount
       end
+      @grand_bill_total << { name: b.category, bill_total: sprintf("%.2f", payment_total_for_bill) }
     end
     
     render json: { 
@@ -57,6 +61,7 @@ class Api::BillsController < ApplicationController
       completed_count: @completed_count,  
       overdue_count: @overdue_count,  
       total_paid: sprintf("%.2f", @total_paid),  
+      grand_bill_total: @grand_bill_total,  
     }
   end
   

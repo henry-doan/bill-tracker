@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { BillConsumer } from "../../providers/BillProvider";
 import CountStats from '../shared/CountStats';
+import DashCharts from './DashCharts';
 
 
 const MainStats = ({ getBillCount, billCount, bills }) => {
@@ -10,7 +11,10 @@ const MainStats = ({ getBillCount, billCount, bills }) => {
   }, [])
 
   return (
-    <CountStats {...billCount } itemLength={bills.length} itemTitle="Total Bills" />
+    <>
+      <DashCharts pieChartData={billCount.grand_bill_total} />
+      <CountStats {...billCount } itemLength={bills.length} itemTitle="Total Bills" />
+    </>
   )
 }
 

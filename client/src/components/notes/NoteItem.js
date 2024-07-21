@@ -25,7 +25,7 @@ const NoteItem = ({ id, subject, body, updateNote, deleteNote }) => {
               <CommentAction>Edit</CommentAction>
             }
           >
-            <ModalHeader>Update Bill Details</ModalHeader>
+            <ModalHeader>Update Note Details</ModalHeader>
             <ModalContent image>
               <ModalDescription>
                 <NoteForm 

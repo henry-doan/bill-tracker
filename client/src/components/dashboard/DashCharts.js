@@ -14,10 +14,15 @@ const yearOptions = [
 
 const DashCharts = ({ pieChartData = [], getPaymentByYear, paymentByYear  }) => {
   const [data, setData] = useState([])
+  const [selectedYear, setSelectedYear] = useState('2024')
 
   useEffect( () => {
-    getPaymentByYear(2024)
-    setData(formatData())
+    async function fetchMyAPI() {
+      getPaymentByYear(2024)
+      setData(formatData())
+    }
+
+    fetchMyAPI()
   }, [])
 
   const pieData = pieChartData.map(pay => { return { name: pay.name, value: parseFloat(pay.bill_total)} });
@@ -56,7 +61,7 @@ const DashCharts = ({ pieChartData = [], getPaymentByYear, paymentByYear  }) => 
               selection
               options={yearOptions}
               defaultValue={{ key: '2024', value: '2024', text: '2024' }}
-              onChange={(e) => getPaymentByYear(e.value)}
+              onChange={(e) => setSelectedYear(e.value)}
             />
             <Header textAlign='center'>Amount Spend Per Month</Header>
             <LineChart

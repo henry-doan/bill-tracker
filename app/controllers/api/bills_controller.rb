@@ -67,9 +67,10 @@ class Api::BillsController < ApplicationController
   
   def payment_by_year
     @payments_per_year = []
+    year = params[:year] ? params[:year] : Time.zone.now.year
     
     current_user.bills.each do |b|
-      b.payments.where('extract(year from whenpaid) = ?', params[:year]).each do |pay|
+      b.payments.where('extract(year from whenpaid) = ?', year).each do |pay|
         if @payments_per_year.any? {|pay_hash| pay_hash[:whenpaid] == pay[:whenpaid]}
           found_hash = @payments_per_year.find {|pay_hash| pay_hash[:whenpaid] == pay[:whenpaid]}
           found_hash[:amount] = found_hash[:amount].to_f + pay.amount
@@ -79,7 +80,13 @@ class Api::BillsController < ApplicationController
       end
     end
 
-    render json: { payments_per_year: @payments_per_year }
+    sorted_payments = @payments_per_year.sort_by { |h| h[:whenpaid]}
+   
+    render json: { 
+      payments_per_year: @payments_per_year,
+      earliest_payment_year: sorted_payments.first ? sorted_payments.first[:whenpaid].year : year,
+      latest_payment_year: sorted_payments.last ? sorted_payments.last[:whenpaid].year : year
+    }
   end
 
   private

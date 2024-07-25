@@ -5,7 +5,7 @@ import CountStats from '../shared/CountStats';
 import DashCharts from './DashCharts';
 
 
-const MainStats = ({ getBillCount, billCount, bills, getPaymentByYear, paymentByYear }) => {
+const MainStats = ({ getBillCount, billCount, bills, getPaymentByYear, paymentByYear, earlyYear, latestYear, }) => {
   useEffect( () => {
     getBillCount()
   }, [])
@@ -16,6 +16,8 @@ const MainStats = ({ getBillCount, billCount, bills, getPaymentByYear, paymentBy
         pieChartData={billCount.grand_bill_total} 
         getPaymentByYear={getPaymentByYear} 
         paymentByYear={paymentByYear} 
+        earlyYear={earlyYear}
+        latestYear={latestYear}
       />
       <CountStats {...billCount } itemLength={bills.length} itemTitle="Total Bills" />
     </>

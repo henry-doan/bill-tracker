@@ -9,6 +9,8 @@ const BillProvider = ({ children }) => {
   const [bills, setBills] = useState([])
   const [billCount, setBillCount] = useState({ completed_count: 0, overdue_count: 0, pending_count: 0, total_paid: 0.0 })
   const [paymentByYear, setPaymentByYear] = useState([])
+  const [earlyYear, setEarlyYear] = useState()
+  const [latestYear, setLatestYear] = useState()
   const [msgs, setMsgs] = useState()
   const navigate = useNavigate()
 
@@ -67,7 +69,11 @@ const BillProvider = ({ children }) => {
 
   const getPaymentByYear = (year) => {
     axios.post('/api/payment_by_year', { year })
-      .then( res => setPaymentByYear(res.data.payments_per_year))
+      .then( res => {
+        setPaymentByYear(res.data.payments_per_year)
+        setEarlyYear(res.data.earliest_payment_year)
+        setLatestYear(res.data.latest_payment_year)
+      })
       .catch( err => {
         console.log(err)
         setMsgs({ msg: err.response.data.errors })
@@ -87,6 +93,8 @@ const BillProvider = ({ children }) => {
       billCount,
       paymentByYear,
       getPaymentByYear,
+      earlyYear,
+      latestYear,
     }}>
       { children }
     </BillContext.Provider>

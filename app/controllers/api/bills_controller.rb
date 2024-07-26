@@ -83,9 +83,7 @@ class Api::BillsController < ApplicationController
     sorted_payments = @payments_per_year.sort_by { |h| h[:whenpaid]}
    
     render json: { 
-      payments_per_year: @payments_per_year,
-      earliest_payment_year: sorted_payments.first ? sorted_payments.first[:whenpaid].year : year,
-      latest_payment_year: sorted_payments.last ? sorted_payments.last[:whenpaid].year : year
+      payments_per_year: sorted_payments,
     }
   end
 

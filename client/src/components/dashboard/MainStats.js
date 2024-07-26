@@ -8,6 +8,7 @@ import DashCharts from './DashCharts';
 const MainStats = ({ getBillCount, billCount, bills, getPaymentByYear, paymentByYear, earlyYear, latestYear, }) => {
   useEffect( () => {
     getBillCount()
+    getPaymentByYear()
   }, [])
 
   return (

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,8 +10,6 @@ const BillProvider = ({ children }) => {
   const [bills, setBills] = useState([])
   const [billCount, setBillCount] = useState({ completed_count: 0, overdue_count: 0, pending_count: 0, total_paid: 0.0 })
   const [paymentByYear, setPaymentByYear] = useState([])
-  const [earlyYear, setEarlyYear] = useState()
-  const [latestYear, setLatestYear] = useState()
   const [msgs, setMsgs] = useState()
   const navigate = useNavigate()
 
@@ -70,14 +69,18 @@ const BillProvider = ({ children }) => {
   const getPaymentByYear = (year) => {
     axios.post('/api/payment_by_year', { year })
       .then( res => {
-        setPaymentByYear(res.data.payments_per_year)
-        setEarlyYear(res.data.earliest_payment_year)
-        setLatestYear(res.data.latest_payment_year)
+        setPaymentByYear(formatData(res.data.payments_per_year))
       })
       .catch( err => {
         console.log(err)
         setMsgs({ msg: err.response.data.errors })
       })
+  }
+
+  const formatData = (paymentByYearArr) => {
+    return paymentByYearArr.map( p => {
+      return { name: moment(p.whenpaid).format('MM/DD/YY'), Amount: p.amount }
+    })
   }
 
   return (
@@ -93,8 +96,6 @@ const BillProvider = ({ children }) => {
       billCount,
       paymentByYear,
       getPaymentByYear,
-      earlyYear,
-      latestYear,
     }}>
       { children }
     </BillContext.Provider>
